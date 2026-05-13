@@ -8,6 +8,24 @@
     },
     {
       "path": "./apps/dashboard"
+    },
+    {
+      "path": "./apps/landing-e2e"
+    },
+    {
+      "path": "./apps/landing"
+    },
+    {
+      "path": "./libs/shared-ui"
+    },
+    {
+      "path": "./apps/socket-server-e2e"
+    },
+    {
+      "path": "./apps/socket-server"
+    },
+    {
+      "path": "./libs/api-interfaces"
     }
   ]
 }
