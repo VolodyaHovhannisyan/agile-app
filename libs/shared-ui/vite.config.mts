@@ -54,3 +54,106 @@ export default defineConfig(() => ({
     },
   },
 }));
+
+
+/**
+ import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { visualizer } from 'rollup-plugin-visualizer';
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return {
+    root: './apps/web',
+
+    base: env.VITE_BASE_URL || '/',
+
+    plugins: [react(), mode === 'analyze' && visualizer({ open: true })].filter(
+      Boolean,
+    ),
+
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@ui': path.resolve(__dirname, '../../packages/ui'),
+      },
+      dedupe: ['react', 'react-dom'],
+      extensions: ['.ts', '.tsx', '.js'],
+    },
+
+    server: {
+      port: 5173,
+      strictPort: true,
+      open: true,
+      cors: true,
+      proxy: {
+        '/api': {
+          target: env.VITE_API_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
+      hmr: {
+        overlay: true,
+      },
+    },
+
+    preview: {
+      port: 4173,
+    },
+
+    define: {
+      __APP_VERSION__: JSON.stringify('1.0.0'),
+    },
+
+    css: {
+      modules: {
+        scopeBehaviour: 'local',
+      },
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/styles/variables.scss";`,
+        },
+      },
+    },
+
+    optimizeDeps: {
+      include: ['react', 'react-dom'],
+      exclude: ['@ui'],
+    },
+
+    build: {
+      outDir: 'dist',
+      sourcemap: true,
+      minify: 'esbuild',
+      target: 'esnext',
+
+      rollupOptions: {
+        output: {
+          manualChunks: (moduleId, meta) => {
+            if (moduleId.includes('node_modules')) {
+              return 'vendor';
+            }
+            return null;
+          },
+        },
+      },
+
+      chunkSizeWarningLimit: 1000,
+    },
+
+    esbuild: {
+      jsxInject: `import React from 'react'`,
+    },
+
+    assetsInclude: ,
+
+    logLevel: 'info',
+
+    clearScreen: true,
+  };
+});
+
+ */
