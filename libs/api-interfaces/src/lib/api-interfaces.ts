@@ -1,21 +1,11 @@
-export function apiInterfaces(): string {
-  return 'api-interfaces';
-}
-
-export interface User {
-  id: string;
-  name: string;
-  avatarUrl?: string;
-}
-
 export interface Card {
   id: string;
-  boardId: string;
-  columnId: string;
   title: string;
-  description: string;
-  order: number; // For sorting
-  assignees: User[];
+  description?: string;
+  columnId: string;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Column {
@@ -23,18 +13,51 @@ export interface Column {
   boardId: string;
   title: string;
   order: number;
-  cardIds: string[]; // Normalized reference
+  cardIds: string[];
 }
 
 export interface Board {
   id: string;
   title: string;
+  description?: string;
+  columnOrder: string[];
   columns: Column[];
-  cards: Card[]; // We'll normalize this in the store
+  cards: Card[];
+  createdAt: string;
+  updatedAt: string;
 }
 
-// For WebSockets
+export interface BoardSnapshotPayload {
+  board: Board;
+  version: number;
+}
+
+export interface CardMovedPayload {
+  boardId: string;
+  cardId: string;
+  fromColumnId: string;
+  toColumnId: string;
+  toIndex: number;
+}
+
+export interface CardCreatedPayload {
+  boardId: string;
+  columnId: string;
+  card: Card;
+}
+
+export interface ColumnCreatedPayload {
+  boardId: string;
+  column: Column;
+}
+
 export enum SocketEvents {
-  CardMoved = 'card:moved',
-  BoardUpdated = 'board:updated',
+  connect = 'connect',
+  disconnect = 'disconnect',
+  boardSnapshot = 'board:snapshot',
+  cardMoved = 'card:moved',
+  cardCreated = 'card:created',
+  columnCreated = 'column:created',
+  boardUpdated = 'board:updated',
+  joinBoard = 'board:join'
 }

@@ -2,7 +2,14 @@
   "name": "@trello-pro/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev:dashboard": "nx serve dashboard",
+    "dev:landing": "nx serve landing",
+    "dev:socket-server": "nx serve socket-server",
+    "build:dashboard": "nx build dashboard",
+    "build:landing": "nx build landing",
+    "build:socket-server": "nx build socket-server"
+  },
   "private": true,
   "dependencies": {
     "axios": "^1.6.0",
@@ -10,6 +17,11 @@
     "next": "~16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "redux": "^5.0.1",
+    "react-redux": "^9.0.0",
+    "redux-saga": "^1.2.4",
+    "socket.io": "^4.6.2",
+    "socket.io-client": "^4.6.2",
     "rollup-plugin-visualizer": "^7.0.1"
   },
   "devDependencies": {
