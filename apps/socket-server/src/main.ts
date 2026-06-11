@@ -11,7 +11,7 @@ import {
 } from '@trello-pro/api-interfaces';
 
 const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const port = process.env.PORT ? Number(process.env.PORT) : 3200;
 
 const app = express();
 const server = http.createServer(app);

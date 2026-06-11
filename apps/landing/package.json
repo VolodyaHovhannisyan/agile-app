@@ -2,6 +2,37 @@
   "name": "@trello-pro/landing",
   "version": "0.0.1",
   "private": true,
+   "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/next:build"
+      },
+      "dev": {
+        "executor": "@nx/next:server",
+        "options": {
+          "buildTarget": "@trello-pro/landing:build"
+        }
+      },
+      "serve": {
+        "executor": "nx:run-commands",
+        "options": {
+          "cwd": "apps/landing",
+          "command": "npx next dev"
+        },
+        "configurations": {
+          "production": {
+            "command": "npx next start"
+          }
+        }
+      },
+      "start": {
+        "executor": "@nx/next:server",
+        "options": {
+          "buildTarget": "@trello-pro/landing:build"
+        }
+      }
+    }
+  },
   "dependencies": {
     "next": "~16.1.6",
     "react": "^19.0.0",
